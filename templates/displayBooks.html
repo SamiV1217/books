@@ -1,0 +1,28 @@
+<!doctype html>
+<html id="display" lang="en">
+    <head>
+        <link rel="stylesheet" href="/static/styles.css" />    
+        <title>Sponge Books</title>
+    </head>
+    <body>
+        <h1 class="title">Books of the Sponge</h1>
+        <a href="index.html" id="link">  Back to Home</a>
+        <table id="table">
+            <tr class="column">
+                <th>Title</th>
+                <th>Author</th>
+                <th>Owner</th>
+                <th>Holder</th>
+            </tr>
+            {% for book in books %}
+            <tr class="column">
+                <td class="row">{{ book[0] }}</td>
+                <td>{{ book[1] }}</td>
+                <td>{{ book[2] }}</td>
+                <td>{{ book[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </body>
+</html>

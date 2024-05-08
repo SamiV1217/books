@@ -1,0 +1,23 @@
+<!doctype html>
+<html id="home" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/styles.css" />    
+    <title>Sponge Books</title>
+</head>
+<body>
+    <h1 class="title">Books of the Sponge</h1>
+    <div class="center">
+        <a href="{{ url_for('addBook') }}">
+            <button  class="buttons">Add a Book</button></a>
+        <a href="{{ url_for('removeBook') }}">
+            <button class="buttons">Remove a book</button></a>        
+        <a href="{{ url_for('loanBook') }}">
+            <button  class="buttons">Loan a book</button></a>
+        <a href="{{ url_for('findBook') }}">
+            <button  class="buttons">Find a book</button></a>
+        <a href="{{ url_for('displayBooks') }}">
+            <button  class="buttons">Look at the books</button></a>
+    </div>
+</body>
+</html>

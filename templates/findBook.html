@@ -1,0 +1,44 @@
+<!doctype html>
+<html id="find" lang="en">
+<head>
+    <link rel="stylesheet" href="/static/styles.css" />    
+</head>
+<body>
+    <h1 class="title">Find a Book</h1>
+    <a href="{{ url_for('index') }}" id="link">  Back to Home</a>
+    
+    <form id="findForm" name="findForm" action="find_book" method="POST">
+        <label for="title" class="labels">Book Title: </label>
+        <input class="inputs" type="text" id="title" name="title"><br>
+        <button id="btn" class="buttons" onClick="grabElements(this.form)">Find</button>
+    </form>
+    {% if books != 0 %}   
+        <table id="table">
+            <tr class="column">
+                <th>Title</th>
+                <th>Author</th>
+                <th>Owner</th>
+                <th>Holder</th>
+            </tr>
+            {% for book in books %}
+            <tr class="column">
+                <td class="row">{{ book[0] }}</td>
+                <td class="row">{{ book[1] }}</td>
+                <td class="row">{{ book[2] }}</td>
+                <td class="row">{{ book[3] }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    </body>
+
+    <script>
+        var input = document.getElementById("title");
+        input.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("btn").click();
+          }
+        });
+        </script>
+</html>

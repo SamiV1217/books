@@ -1,0 +1,24 @@
+<!doctype html>
+<html id="loan" lang="en">
+<head>
+    <link rel="stylesheet" href="/static/styles.css" />    
+</head>
+<body>
+     <h1 class="title">Loan a Book</h1>
+     <a href="index.html" id="link">  Back to Home</a>
+
+     <table id="table">
+          <tr class="column">
+              <th>Title</th>
+              <th>Owner</th>
+              <th>Holder</th>
+          </tr>
+          {% for book in books %}
+          <tr class="column">
+              <td class="row">{{ book[0] }}</td>
+              <td>{{ book[1] }}</td>
+              <td>{{ book[2] }}</td>
+          </tr>
+          {% endfor %}
+      </table></body>
+</html>

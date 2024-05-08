@@ -1,0 +1,29 @@
+<!doctype html>
+<html id="removeBook" lang="en">
+<head>
+    <link rel="stylesheet" href="/static/styles.css" />    
+</head>
+<body>
+    <h1 class="title">Remove a Book</h1>
+    <a href="{{ url_for('index') }}" id="link">  Back to Home</a>
+<p>
+    </p>    
+    <form id="removeForm" name="removeForm" action="/remove_book" method="POST">
+        <label for="owner" class="labels">Name:</label>
+        <input type="text" class="inputs" placeholder="First" id="owner" name="owner"><br>
+        <label for="title" class="labels">Book Title: </label>
+        <input type="text" class="inputs" id="title" name="title"><br>
+        <button id="btn" class="buttons" type="submit">Remove</button>
+    </form>
+</body>
+
+<script>
+    var input = document.getElementById("title");
+    input.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("myBtn").click();
+      }
+    });
+    </script>
+</html>
