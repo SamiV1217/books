@@ -21,3 +21,6 @@ INSERT INTO Book (book_name, author, owner, holder)
 VALUES("Seige and Storm", "Leigh Bardugo", "Sami", "Sami");
 INSERT INTO Book (book_name, author, owner, holder)
 VALUES("Deeper", "Dane Ortlund", "Sami", "Sami");
+
+
+DELETE FROM Book WHERE book_name == "Harry Potter and the Sorcerers Stone", "Sami";
