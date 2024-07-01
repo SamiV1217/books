@@ -1,6 +1,7 @@
 -- Drop existing tables to start fresh every time this SQL is run
 DROP TABLE IF EXISTS Book;
 DROP TABLE IF EXISTS Publisher;
+
 --Make the Book table
 CREATE TABLE "Book" (
 	"book_id"	INTEGER NOT NULL,
@@ -13,10 +14,10 @@ CREATE TABLE "Book" (
 
 --Insert books into book table
 INSERT INTO Book (book_name, author, owner, holder)
-VALUES("Knowing God's Will", "Blaine Smith", "Sami", "Sami");
+VALUES("Harry Potter and the Sorcerers Stone", "J.K. Rowling", "Sami", "Sami");
 INSERT INTO Book (book_name, author, owner, holder)
-VALUES("Members of One Another", "Dennis McCallum", "Sami", "Sami");
+VALUES("Shadow and Bone", "Leigh Bardugo", "Sami", "Sami");
 INSERT INTO Book (book_name, author, owner, holder)
-VALUES("Loving One Another", "Dennis McCallum", "Sami", "Sami");
+VALUES("Seige and Storm", "Leigh Bardugo", "Sami", "Sami");
 INSERT INTO Book (book_name, author, owner, holder)
 VALUES("Deeper", "Dane Ortlund", "Sami", "Sami");

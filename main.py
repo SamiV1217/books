@@ -3,12 +3,12 @@ import sqlite3
 from contextlib import closing
 
 
-def display(): #grab the books in database and return them
-    conn = sqlite3.connect("books.sqlite") #local storage connection
+def display(): # Grab the books in database and return them
+    conn = sqlite3.connect("books.sqlite") # Local storage connection
     c = conn.cursor()
     conn.row_factory = sqlite3.Row
     try:
-        with closing(conn.cursor()) as c:   #Connect and store the books
+        with closing(conn.cursor()) as c:   # Connect and store the books
             query = '''SELECT book_name, author, owner, holder FROM Book'''
             c.execute(query)
             books = c.fetchall()
@@ -16,7 +16,7 @@ def display(): #grab the books in database and return them
         books = None
     return books
 
-def find(title):    #Obtain the books with a given title and return them
+def find(title):    # Obtain the books with a given title and return them
     conn = sqlite3.connect("books.sqlite")
     c = conn.cursor()
     query = '''SELECT book_name, author, owner, holder
@@ -24,25 +24,25 @@ def find(title):    #Obtain the books with a given title and return them
         WHERE book_name=?'''
     c.execute(query, (title,))
     books = c.fetchall()
-    if len(books) > 0:  #Ensure books are present
+    if len(books) > 0:  # Ensure books are present
         return books
     else:
         return 0
 
-def findDuplicate(title, owner):
+def findDuplicate(title, owner): # Look for duplicates, checks before adding a book
     conn = sqlite3.connect("books.sqlite")
     c = conn.cursor()
     query = '''SELECT book_name, author, owner, holder
         FROM Book
         WHERE book_name=? AND owner=?'''
     c.execute(query, (title,owner,))
-    books = c.fetchall()
+    books = c.fetchall() # Catches all duplicates and returns them
     if len(books) > 0:
         return books
     else:
         return 0
     
-def findRemove(title):
+def findRemove(title): # Check to see if the book exists before removing
     conn = sqlite3.connect("Books.sqlite")
     c = conn.cursor()
     query = '''SELECT book_name, author, owner, holder
@@ -60,20 +60,20 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/index.html')
 def index():
-    return render_template("index.html")
+    return render_template("index.html") # home page load
 
-@app.route('/displayBooks.html')
+@app.route('/displayBooks.html') # Displays all books page
 def displayBooks():
     books = display()
     return render_template("displayBooks.html", books=books)
 
-@app.route('/addBook.html')
+@app.route('/addBook.html') # Add a book form page
 def addBook():
     return render_template("addBook.html")
 
 @app.route('/add_book',methods=['POST'] )
 def add(): 
-    title = request.form.get('title')
+    title = request.form.get('title') # Grabs the details from the form
     author = request.form.get('author')
     owner = request.form.get('owner')
     conn = sqlite3.connect("books.sqlite")
@@ -93,10 +93,12 @@ def add():
         else:
             return render_template("exists.html")
     return render_template("/")
-@app.route('/findBook.html')
+
+@app.route('/findBook.html') # Find a book page
 def findBook():
     return render_template("findBook.html")
-@app.route('/find_book', methods=['POST'])
+
+@app.route('/find_book', methods=['POST'])  # Find a book function
 def finding():
     title = request.form.get('title')
     books = find(title)
@@ -104,11 +106,11 @@ def finding():
         return render_template('notFound.html')
     return render_template('findBook.html', books=books)
 
-@app.route('/loanBook.html')
+@app.route('/loanBook.html')    # Loan book page
 def loanBook():
     return render_template("loanBook.html")
 
-@app.route('/loan_book', methods=['POST'])
+@app.route('/loan_book', methods=['POST']) # Loan book SQL
 def loan():
     owner = request.form.get('owner')
     title = request.form.get('title')
@@ -126,11 +128,11 @@ def loan():
         return redirect("/")
     return "Wrong Input"
 
-@app.route('/removeBook.html')
+@app.route('/removeBook.html')  # Remove book page
 def removeBook():
     return render_template("removeBook.html")
 
-@app.route('/remove_book', methods=['POST'])
+@app.route('/remove_book', methods=['POST']) # Remove a book
 def remove():
     owner = request.form.get('owner')
     title = request.form.get('title')
@@ -146,7 +148,7 @@ def remove():
         return render_template('/')
     return render_template("notFound.html")
 
-if __name__ == "__main__":
+if __name__ == "__main__": # On startup run
     conn = sqlite3.connect("books.sqlite")
     app.run(debug=True)
     conn.close()
